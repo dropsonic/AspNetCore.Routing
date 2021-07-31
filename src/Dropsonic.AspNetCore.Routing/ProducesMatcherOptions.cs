@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Dropsonic.AspNetCore.Routing
 {
-    internal class ProducesMatcherOptions
+    public class ProducesMatcherOptions
     {
         public static class MediaTypes
         {

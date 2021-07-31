@@ -12,7 +12,7 @@ namespace Dropsonic.AspNetCore.Routing
         /// based on the <c>Accept</c> header and <see cref="Microsoft.AspNetCore.Mvc.ProducesAttribute"/> of the endpoints,
         /// thus allowing to have multiple matching endpoints but with different media types in <see cref="Microsoft.AspNetCore.Mvc.ProducesAttribute"/>.
         /// </summary>
-        internal static IMvcBuilder AddProducesEndpointMatcher(this IMvcBuilder builder)
+        public static IMvcBuilder AddProducesEndpointMatcher(this IMvcBuilder builder)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
@@ -31,7 +31,7 @@ namespace Dropsonic.AspNetCore.Routing
         }
 
         /// <inheritdoc cref="AddProducesEndpointMatcher(Microsoft.Extensions.DependencyInjection.IMvcBuilder)"/>
-        internal static IMvcBuilder AddProducesEndpointMatcher(
+        public static IMvcBuilder AddProducesEndpointMatcher(
             this IMvcBuilder builder,
             Action<ProducesMatcherOptions> setupAction)
         {
