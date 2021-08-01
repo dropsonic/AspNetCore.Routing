@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "version.json"
+      - ".github/workflows/publish.yml"
 
 jobs:
   publish:
