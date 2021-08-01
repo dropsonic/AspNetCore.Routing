@@ -48,7 +48,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [Route("orders")] // the same route as in the API controller
 [Produces(MediaTypeNames.Text.Html)]
-public class MainController : Controller
+public class OrdersController : Controller
 {
     [HttpGet("{**catchAll}")] // SPA fallback for client-side routing; an on-site equivalent of MapSpaFallbackRoute()
     public IActionResult Index(string catchAll) => View();
@@ -63,7 +63,7 @@ using Microsoft.AspNetCore.Mvc;
 [Produces(MediaTypeNames.Application.Json)]
 public class OrdersController : ControllerBase
 {
-    [HttpGet(Name = nameof(GetOrders))]
+    [HttpGet]
     public IActionResult GetOrders()
     {
         ...
