@@ -1,10 +1,14 @@
-# ProducesMatcherPolicy
+# Dropsonic.AspNetCore.Routing
 
-## Description
+[![CI](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/ci.yml/badge.svg)](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/ci.yml)
+
+## ProducesMatcherPolicy
+
+### Overview
 
 A special endpoint [`MatcherPolicy`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.routing.matcherpolicy) that selects the endpoint based on the [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) header (or the explicit content format passed as a query string parameter) and [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute) of the endpoints, thus allowing to have multiple matching endpoints but with different media types in [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute).
 
-## Scenarios
+### Scenarios
 
 Consider having a resource that you want to serve, providing a RESTful endpoint to do that.
 
@@ -19,7 +23,7 @@ The suggested approach, when used in conjunction with [HATEOAS](https://en.wikip
 
 Unfortunately, putting both MVC controller and API controller on the same route in ASP.NET Core produces an `AmbiguousMatchException` exception since the framework cannot choose an appropriate endpoint. `ProducesMatcherPolicy` helps with that, choosing the endpoint based on the [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) header, matching its value with the [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute) on endpoints.
 
-## Usage
+### Usage
 
 ```c#
 public class Startup
@@ -73,7 +77,7 @@ public class OrdersController : ControllerBase
 
 You can also find a sample web application in
 
-## Behavior
+### Behavior
 
 If [`MvcOptions.RespectBrowserAcceptHeader`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.respectbrowseracceptheader) has a default value of `false`, ASP.NET Core returns JSON, [as stated in the documentation](https://docs.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting#browsers-and-content-negotiation). But in the case when multiple endpoints share the same route (i.e., MVC and web API), it makes sense to default to `text/html` for user's convenience first, and only if there is no suitable endpoint for that, return `application/json`.
 
