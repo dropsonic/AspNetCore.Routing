@@ -11,14 +11,9 @@
     <Authors>Vladimir Panchenko</Authors>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Description>
-        Contains a special endpoint MatcherPolicy (ProducesMatcherPolicy) that selects the endpoint based on the Accept header
-        (or the explicit content type passed as a query string parameter) and ProducesAttribute of the endpoints,
-        thus allowing to have multiple matching endpoints but with different media types in ProducesAttribute.
+    <Description>Contains a special endpoint MatcherPolicy (ProducesMatcherPolicy) that selects the endpoint based on the Accept header (or the explicit content type passed as a query string parameter) and ProducesAttribute of the endpoints, thus allowing to have multiple matching endpoints but with different media types in ProducesAttribute.
 
-        Useful in scenarios when you want to put both HTML (e.g., MVC) and JSON (i.e, web API) on the same route and have
-        HTML and JSON as different representations of the same resource.
-    </Description>
+Useful in scenarios when you want to put both HTML (e.g., MVC) and JSON (i.e, web API) on the same route and have HTML and JSON as different representations of the same resource.</Description>
   </PropertyGroup>
 
   <!-- ReSharper disable UnknownProperty -->
