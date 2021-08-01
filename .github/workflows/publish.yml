@@ -11,9 +11,11 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Download the artifact
-        uses: actions/download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: ci.yml
           name: nuget-package
+          path: .
       - name: Publish
         run: dotnet nuget push *.nupkg --api-key ${NUGET_API_KEY}
         env:
