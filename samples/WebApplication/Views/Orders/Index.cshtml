@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Order>
+
+@foreach (var order in Model)
+{
+    <p>@order.Description, @order.Total</p>
+}

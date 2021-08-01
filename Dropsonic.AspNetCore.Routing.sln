@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{75760244-14AE-4BB7-A423-C66E4642B75D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "samples\WebApplication\WebApplication.csproj", "{F4DDEEFA-F5EC-46DC-BB97-EEF56EC5E4FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,16 @@ Global
 		{C4D02DCB-FA8E-4A79-8846-A15403170689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4D02DCB-FA8E-4A79-8846-A15403170689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4D02DCB-FA8E-4A79-8846-A15403170689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4DDEEFA-F5EC-46DC-BB97-EEF56EC5E4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4DDEEFA-F5EC-46DC-BB97-EEF56EC5E4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4DDEEFA-F5EC-46DC-BB97-EEF56EC5E4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4DDEEFA-F5EC-46DC-BB97-EEF56EC5E4FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4DDEEFA-F5EC-46DC-BB97-EEF56EC5E4FE} = {75760244-14AE-4BB7-A423-C66E4642B75D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0467286-07D0-4151-86C8-70EEA1EB582F}
