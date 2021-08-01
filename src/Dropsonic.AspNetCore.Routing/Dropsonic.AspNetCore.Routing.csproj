@@ -28,7 +28,7 @@ Useful in scenarios when you want to put both HTML (e.g., MVC) and JSON (i.e, we
   <!-- ReSharper restore UnknownProperty -->
 
   <ItemGroup>
-      <None Include="../../README.md" Pack="true" PackagePath="/" />
+      <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
