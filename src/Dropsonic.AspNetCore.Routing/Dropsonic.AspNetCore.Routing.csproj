@@ -18,11 +18,11 @@ Useful in scenarios when you want to put both HTML (e.g., MVC) and JSON (i.e, we
   </PropertyGroup>
 
   <!-- ReSharper disable UnknownProperty -->
-  <ItemGroup Condition="$(TargetFramework) != 'netcoreapp3.1'">
+  <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework) == 'netcoreapp3.1' OR $(TargetFramework) == 'net5.0'">
+  <ItemGroup Condition="$(TargetFramework) != 'netstandard2.0'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <!-- ReSharper restore UnknownProperty -->
