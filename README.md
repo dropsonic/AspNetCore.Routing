@@ -6,7 +6,7 @@
 
 ### Overview
 
-A special endpoint [`MatcherPolicy`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.routing.matcherpolicy) that selects the endpoint based on the [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) header (or the explicit content format passed as a query string parameter) and [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute) of the endpoints, thus allowing to have multiple matching endpoints but with different media types in [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute).
+A special endpoint [`MatcherPolicy`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.routing.matcherpolicy) that selects the endpoint based on the [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) header (or the explicit content type passed as a query string parameter) and [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute) of the endpoints, thus allowing to have multiple matching endpoints but with different media types in [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute).
 
 ### Scenarios
 
