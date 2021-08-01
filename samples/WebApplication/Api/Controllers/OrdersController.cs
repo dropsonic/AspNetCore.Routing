@@ -7,7 +7,7 @@ using WebApplication.Services;
 namespace WebApplication.Api.Controllers
 {
     [Route(Routes.Orders)]
-    [Produces(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
     public class OrdersController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
