@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.AspNetCore.Mvc.Formatters.Internal;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.Extensions.Options;
-using Microsoft.Net.Http.Headers;
 
 namespace Dropsonic.AspNetCore.Routing
 {
@@ -267,13 +265,9 @@ namespace Dropsonic.AspNetCore.Routing
 
                     return result;
                 }
-
-                var mediaTypesWithQuality = new List<MediaTypeSegmentWithQuality>();
-                AcceptHeaderParser.ParseAcceptHeader(request.Headers[HeaderNames.Accept], mediaTypesWithQuality);
                 
-                mediaTypesWithQuality.Sort((left, right) => left.Quality > right.Quality ? -1 : 1);
-
-                foreach (var mediaTypeWithQuality in mediaTypesWithQuality)
+                foreach (var mediaTypeWithQuality in request.GetTypedHeaders().Accept
+                    .OrderByDescending(mt => mt.Quality ?? 1))
                 {
                     var mediaType = new MediaType(mediaTypeWithQuality.MediaType);
 

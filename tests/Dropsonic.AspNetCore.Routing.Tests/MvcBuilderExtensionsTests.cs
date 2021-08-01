@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -16,7 +15,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
         {
             // Arrange
             var services = new ServiceCollection();
-            var builder = new MvcBuilder(services, new ApplicationPartManager());
+            var builder = new MvcBuilder(services);
 
             // Act
             var actualBuilder = builder.AddProducesEndpointMatcher();
@@ -34,7 +33,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
         {
             // Arrange
             var services = new ServiceCollection();
-            var builder = new MvcBuilder(services, new ApplicationPartManager());
+            var builder = new MvcBuilder(services);
 
             // Act
             var actualBuilder = builder.AddProducesEndpointMatcher(_ => { });

@@ -3,9 +3,7 @@ using System.Reflection;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.AspNetCore.Mvc.Internal;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 // ReSharper disable ClassNeverInstantiated.Local
 
@@ -15,7 +13,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
     {
         public class ProducesAttributeOnControllerOnly
         {
-            [ApiController]
+            [Route("test")]
             [Produces("application/json")]
             private class TestController : ControllerBase
             {
@@ -42,7 +40,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
 
         public class ProducesAttributeOnActionOnly
         {
-            [ApiController]
+            [Route("test")]
             private class TestController : ControllerBase
             {
                 [HttpGet]
@@ -69,7 +67,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
 
         public class ProducesAttributeBothOnControllerAndAction
         {
-            [ApiController]
+            [Route("test")]
             [Produces("application/json")]
             private class TestController : ControllerBase
             {
@@ -98,7 +96,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
 
         public class ProducesAttributeWithMultipleContentTypesOnController
         {
-            [ApiController]
+            [Route("test")]
             [Produces("application/json", "text/html", "application/xml")]
             private class TestController : ControllerBase
             {
@@ -125,7 +123,7 @@ namespace Dropsonic.AspNetCore.Routing.Tests
 
         public class NoProducesAttribute
         {
-            [ApiController]
+            [Route("test")]
             private class TestController : ControllerBase
             {
                 [HttpGet]
@@ -151,13 +149,19 @@ namespace Dropsonic.AspNetCore.Routing.Tests
         private static ActionModel CreateActionModel<TController>(string actionName)
             where TController : ControllerBase
         {
-            var mvcOptions = new OptionsWrapper<MvcOptions>(new MvcOptions());
-            var compositeMetadataDetailsProvider = new DefaultCompositeMetadataDetailsProvider(Enumerable.Empty<IMetadataDetailsProvider>());
-            var modelMetadataProvider = new DefaultModelMetadataProvider(compositeMetadataDetailsProvider);
-            IApplicationModelProvider applicationModelProvider = new DefaultApplicationModelProvider(mvcOptions, modelMetadataProvider);
+            IServiceCollection services = new ServiceCollection();
+            services.AddLogging(); // required by Mvc
+            services.AddMvc();
+            var serviceProvider = services.BuildServiceProvider();
+
+            var applicationModelProviders = serviceProvider.GetServices<IApplicationModelProvider>();
             var applicationModelProviderContext = new ApplicationModelProviderContext(new [] { typeof(TController).GetTypeInfo() });
-            applicationModelProvider.OnProvidersExecuting(applicationModelProviderContext);
-            applicationModelProvider.OnProvidersExecuted(applicationModelProviderContext);
+
+            foreach (var applicationModelProvider in applicationModelProviders)
+            {
+                applicationModelProvider.OnProvidersExecuting(applicationModelProviderContext);
+                applicationModelProvider.OnProvidersExecuted(applicationModelProviderContext);
+            }
 
             return applicationModelProviderContext.Result.Controllers[0].Actions
                 .First(action => action.ActionName == actionName);
