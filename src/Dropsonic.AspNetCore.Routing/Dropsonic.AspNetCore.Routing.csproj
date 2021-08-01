@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
+    <Copyright>Copyright © 2021 Vladimir Panchenko</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/dropsonic/ProducesMatcherPolicy</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dropsonic/ProducesMatcherPolicy</PackageProjectUrl>
+    <PackageTags>aspnetcore, aspnetcoremvc</PackageTags>
+    <Authors>Vladimir Panchenko</Authors>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework) != 'netcoreapp3.1'">
