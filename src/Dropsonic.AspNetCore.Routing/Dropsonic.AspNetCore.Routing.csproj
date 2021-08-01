@@ -5,12 +5,20 @@
     <Copyright>Copyright © 2021 Vladimir Panchenko</Copyright>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/dropsonic/ProducesMatcherPolicy</RepositoryUrl>
+    <PackageId>Dropsonic.AspNetCore.Routing</PackageId>
     <PackageProjectUrl>https://github.com/dropsonic/ProducesMatcherPolicy</PackageProjectUrl>
     <PackageTags>aspnetcore, aspnetcoremvc</PackageTags>
     <Authors>Vladimir Panchenko</Authors>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseFile></PackageLicenseFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>
+        Contains a special endpoint MatcherPolicy (ProducesMatcherPolicy) that selects the endpoint based on the Accept header
+        (or the explicit content type passed as a query string parameter) and ProducesAttribute of the endpoints,
+        thus allowing to have multiple matching endpoints but with different media types in ProducesAttribute.
+
+        Useful in scenarios when you want to put both HTML (e.g., MVC) and JSON (i.e, web API) on the same route and have
+        HTML and JSON as different representations of the same resource.
+    </Description>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework) != 'netcoreapp3.1'">
