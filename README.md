@@ -17,7 +17,7 @@ The suggested approach, when used in conjunction with [HATEOAS](https://en.wikip
 - The SPA doesn't need to know anything about URIs at all (no hardcoded URIs on the client). The SPA is served
 - URIs can have the same format both in API and in SPA routing.
 
-Unfortunately, putting both MVC controller and API controller on the same route in ASP.NET Core produces an exception since the framework cannot choose an appropriate endpoint. `ProducesMatcherPolicy` helps with that, choosing the endpoint based on the [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) header, matching its value with the [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute) on endpoints.
+Unfortunately, putting both MVC controller and API controller on the same route in ASP.NET Core produces an `AmbiguousMatchException` exception since the framework cannot choose an appropriate endpoint. `ProducesMatcherPolicy` helps with that, choosing the endpoint based on the [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) header, matching its value with the [`ProducesAttribute`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.producesattribute) on endpoints.
 
 ## Usage
 
@@ -71,6 +71,8 @@ public class OrdersController : ControllerBase
 }
 ```
 
+You can also find a sample web application in
+
 ## Behavior
 
 If [`MvcOptions.RespectBrowserAcceptHeader`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.respectbrowseracceptheader) has a default value of `false`, ASP.NET Core returns JSON, [as stated in the documentation](https://docs.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting#browsers-and-content-negotiation). But in the case when multiple endpoints share the same route (i.e., MVC and web API), it makes sense to default to `text/html` for user's convenience first, and only if there is no suitable endpoint for that, return `application/json`.
@@ -108,6 +110,8 @@ Accept: */*
 
 -- An endpoint that produces application/xml is called
 ```
+
+Note that this option affects only the `ProducesMatcherPolicy` behavior and does not affect the default ASP.NET Core content negotiation process. It won't force ASP.NET Core to serve this particular content type, bypassing other content negotiation rules and settings such as [`MvcOptions.RespectBrowserAcceptHeader`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.respectbrowseracceptheader).
 
 ## Remarks
 
