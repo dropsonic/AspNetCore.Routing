@@ -23,3 +23,11 @@ jobs:
         run: dotnet build --configuration Release
       - name: Test
         run: dotnet test --configuration Release --no-build
+      - name: Pack (create NuGet package)
+        run: dotnet pack "src\Dropsonic.AspNetCore.Routing\Dropsonic.AspNetCore.Routing.csproj" --configuration Release --no-build --output .
+      - name: Archive NuGet package as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuget-package
+          path: "*.nupkg"
+          retention-days: 3
