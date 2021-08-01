@@ -21,6 +21,7 @@
     </Description>
   </PropertyGroup>
 
+  <!-- ReSharper disable UnknownProperty -->
   <ItemGroup Condition="$(TargetFramework) != 'netcoreapp3.1'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
@@ -28,5 +29,6 @@
   <ItemGroup Condition="$(TargetFramework) == 'netcoreapp3.1' OR $(TargetFramework) == 'net5.0'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <!-- ReSharper restore UnknownProperty -->
 
 </Project>
