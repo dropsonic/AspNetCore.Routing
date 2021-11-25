@@ -1,6 +1,6 @@
 # Dropsonic.AspNetCore.Routing
 
-[![CI](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/ci.yml/badge.svg)](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/ci.yml) [![Publish](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/publish.yml/badge.svg)](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/publish.yml)
+[![CI](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/ci.yml/badge.svg)](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/ci.yml) [![Publish](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/publish.yml/badge.svg)](https://github.com/dropsonic/AspNetCore.Routing/actions/workflows/publish.yml) [![NuGet](https://img.shields.io/nuget/v/Dropsonic.AspNetCore.Routing)](https://www.nuget.org/packages/Dropsonic.AspNetCore.Routing)
 
 ## ProducesMatcherPolicy
 
