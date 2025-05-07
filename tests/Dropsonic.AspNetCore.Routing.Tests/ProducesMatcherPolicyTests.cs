@@ -170,6 +170,36 @@ namespace Dropsonic.AspNetCore.Routing.Tests
                     "because text/html is the default content type, and a corresponding endpoint exists");
             }
 
+            public class NoAcceptHeader
+            {
+                [Fact]
+                public void ShouldPreferTextHtmlByDefault()
+                {
+                    // Arrange
+                    var policy = new ProducesMatcherPolicy(Make.DefaultProducesMatcherOptions(), Make.DefaultMvcOptions());
+
+                    var endpoints = new[]
+                    {
+                        Make.Endpoint().WithContentType("application/json"),
+                        Make.Endpoint().WithContentTypes("text/html"),
+                    };
+
+                    var httpContext = Make.HttpContext();
+
+                    // Act
+                    bool appliesToEndpoints = policy.AppliesToEndpoints(endpoints);
+                    var edges = policy.GetEdges(endpoints).ToJumpTableEdges();
+                    var jumpTable = policy.BuildJumpTable(-1, edges);
+                    int actualDestination = jumpTable.GetDestination(httpContext);
+                    string actualContentType = (string) edges[actualDestination].State;
+
+                    // Assert
+                    appliesToEndpoints.Should().BeTrue("because there are endpoints with associated content types");
+                    actualContentType.Should().Be("text/html",
+                        "because text/html is the default content type, and a corresponding endpoint exists");
+                }
+            }
+
             public class SpecificContentTypeAndMatchAllInAccept
             {
                 [Fact]
