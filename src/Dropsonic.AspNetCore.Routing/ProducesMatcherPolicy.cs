@@ -265,18 +265,21 @@ namespace Dropsonic.AspNetCore.Routing
 
                     return result;
                 }
-                
-                foreach (var mediaTypeWithQuality in request.GetTypedHeaders().Accept
-                    .OrderByDescending(mt => mt.Quality ?? 1))
+
+                var acceptHeader = request.GetTypedHeaders().Accept;
+                if (acceptHeader != null)
                 {
-                    var mediaType = new MediaType(mediaTypeWithQuality.MediaType);
-
-                    if (!_respectBrowserAcceptHeader && mediaType.MatchesAllSubTypes && mediaType.MatchesAllTypes)
+                    foreach (var mediaTypeWithQuality in acceptHeader.OrderByDescending(mt => mt.Quality ?? 1))
                     {
-                        return DefaultContentTypes;
-                    }
+                        var mediaType = new MediaType(mediaTypeWithQuality.MediaType);
 
-                    result.Add(mediaType);
+                        if (!_respectBrowserAcceptHeader && mediaType.MatchesAllSubTypes && mediaType.MatchesAllTypes)
+                        {
+                            return DefaultContentTypes;
+                        }
+
+                        result.Add(mediaType);
+                    }
                 }
 
                 if (result.Count == 0)
